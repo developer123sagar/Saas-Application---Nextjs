@@ -38,7 +38,7 @@ export const getTopUserByPodcastCount = query({
                     totalPodcasts: podcasts.length,
                     podcast: sortedPodcasts.map((p) => ({
                         podcastTitle: p.podcastTitle,
-                        pocastId: p._id,
+                        podcastId: p._id,
                     })),
                 };
             })
@@ -52,15 +52,15 @@ export const createUser = internalMutation({
     args: {
         clerkId: v.string(),
         email: v.string(),
-        imgUrl: v.string(),
-        username: v.string(),
+        imageUrl: v.string(),
+        name: v.string(),
     },
     handler: async (ctx, args) => {
         await ctx.db.insert("users", {
             clerkId: args.clerkId,
             email: args.email,
-            imgUrl: args.imgUrl,
-            username: args.username,
+            imageUrl: args.imageUrl,
+            name: args.name,
         });
     },
 });
@@ -68,7 +68,7 @@ export const createUser = internalMutation({
 export const updateUser = internalMutation({
     args: {
         clerkId: v.string(),
-        imgUrl: v.string(),
+        imageUrl: v.string(),
         email: v.string(),
     },
     async handler(ctx, args) {
@@ -82,7 +82,7 @@ export const updateUser = internalMutation({
         }
 
         await ctx.db.patch(user._id, {
-            imgUrl: args.imgUrl,
+            imageUrl: args.imageUrl,
             email: args.email,
         });
 
@@ -94,7 +94,7 @@ export const updateUser = internalMutation({
         await Promise.all(
             podcast.map(async (p) => {
                 await ctx.db.patch(p._id, {
-                    authorImgUrl: args.imgUrl,
+                    authorImageUrl: args.imageUrl,
                 });
             })
         );

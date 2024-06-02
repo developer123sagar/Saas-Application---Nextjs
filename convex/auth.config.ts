@@ -1,7 +1,7 @@
 const authConfig = {
     providers: [
         {
-            domain: "https://kind-lamprey-72.clerk.accounts.dev/",
+            domain: "https://kind-lamprey-72.clerk.accounts.dev",
             applicationID: "convex",
         },
     ]
