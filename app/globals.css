@@ -13,6 +13,15 @@ html {
 }
 
 @layer utilities {
+  .h {
+    @apply border border-red-500;
+  }
+  .flex_center{
+    @apply flex items-center justify-center
+  }
+  .flex_col_center{
+    @apply flex flex-col items-center justify-center
+  }
   .input-class {
     @apply text-16 placeholder:text-16 bg-black-1 rounded-[6px] placeholder:text-gray-1 border-none text-gray-1;
   }
