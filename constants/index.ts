@@ -16,6 +16,8 @@ export const sidebarLinks = [
     },
 ];
 
+export const voiceCategories = ["alloy", "shimmer", "nova", "echo", "fable", "onyx"];
+
 export const voiceDetails = [
     {
         id: 1,
