@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export const sidebarLinks = [
     {
         imgURL: "/icons/home.svg",
@@ -103,3 +105,12 @@ export const podcastData = [
             "https://lovely-flamingo-139.convex.cloud/api/storage/221ee4bd-435f-42c3-8e98-4a001e0d806e",
     },
 ];
+
+export const formSchema = z.object({
+    podcastTitle: z.string().min(3, {
+        message: "Podcast title must be at least 3 characters long.",
+    }),
+    podcastDescription: z.string().min(5, {
+        message: "Podcast description must be at least 5 characters long.",
+    }),
+});

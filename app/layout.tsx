@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import type { Metadata } from "next";
+import { Toaster } from "react-hot-toast";
 
 import { ConvexClerkProvider } from "@/providers/ConvexClerkProvider";
 import "./globals.css";
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Toaster position="top-right" />
         <ConvexClerkProvider>{children}</ConvexClerkProvider>
       </body>
     </html>

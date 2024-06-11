@@ -28,13 +28,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { voiceCategories } from "@/constants";
+import { formSchema, voiceCategories } from "@/constants";
 import { Id } from "@/convex/_generated/dataModel";
-
-const formSchema = z.object({
-  podcastTitle: z.string().min(2),
-  podcastDescription: z.string().min(2),
-});
+import { VoiceType } from "@/types";
 
 const CreatePodcast = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -58,12 +54,13 @@ const CreatePodcast = () => {
       podcastDescription: "",
     },
   });
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+
   }
 
   return (
-    <section className="mt-10 flex flex-col">
+    <section className="flex flex-col">
       <h1 className="text-20 font-bold text-white-1">Create podcast</h1>
       <Form {...form}>
         <form
@@ -86,7 +83,7 @@ const CreatePodcast = () => {
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage className="text-white-1" />
+                  <FormMessage className="text-rose-500 text-[14px] leading-normal" />
                 </FormItem>
               )}
             />
@@ -142,19 +139,27 @@ const CreatePodcast = () => {
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage className="text-white-1" />
+                  <FormMessage className="text-rose-500 text-[14px] leading-normal" />
                 </FormItem>
               )}
             />
           </div>
 
           <div className="flex flex-col pt-10">
-            <GeneratePodcast />
+            <GeneratePodcast
+              audio={audioUrl}
+              setAudio={setAudioUrl}
+              setAudioStorageId={setAudioStorageId}
+              setAudioDuration={setAudioDuration}
+              voiceType={voiceType as VoiceType}
+              voicePrompt={voicePrompt}
+              setVoicePrompt={setVoicePrompt}
+            />
             <GenerateThumbnail />
             <div className="mt-10 w-full">
               <Button
                 type="submit"
-                className="text-16 w-full bg-orange-1 py-4 font-extrabold text-white-1 transition-all duration-500 hover:bg-orange-500"
+                className="inline-flex mt-7 w-full h-12 my-4 gap-1 animate-shimmer items-center justify-center rounded-md bg-[linear-gradient(110deg,#F97535,45%,#F6F5F2,48%,#F97535)] bg-[length:200%_100%] px-6 font-medium text-white-1 transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 text-sm"
               >
                 {isSubmitting ? (
                   <>
@@ -162,7 +167,7 @@ const CreatePodcast = () => {
                     <Loader size={20} className="animate-spin ml-2" />
                   </>
                 ) : (
-                  "Submit & Publish Podcast"
+                  "Create Podcast"
                 )}
               </Button>
             </div>
